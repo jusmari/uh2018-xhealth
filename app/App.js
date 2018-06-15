@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { createStackNavigator } from 'react-navigation'
 
 import HomeScreen from './components/HomeScreen'
+import SecondScreen from './components/SecondScreen'
 
 export default class App extends React.Component {
   render() {
@@ -12,7 +13,8 @@ export default class App extends React.Component {
 
 const RootStack = createStackNavigator(
   {
-    Home: HomeScreen
+    Home: HomeScreen,
+    Second: SecondScreen
   },
   {
     initialRouteName: 'Home'

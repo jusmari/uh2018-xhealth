@@ -1,14 +1,14 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 
-export default class HomeScreen extends React.Component {
+export default class SecondScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Kekekekekekekekek</Text>
+        <Text>TOKA SCREENI</Text>
         <Button
-          title="tokaan screeniin"
-          onPress={() => this.props.navigation.navigate('Second')}
+          title="TAKAS"
+          onPress={() => this.props.navigation.navigate('Home')}
         />
       </View>
     )
