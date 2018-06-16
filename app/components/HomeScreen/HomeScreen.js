@@ -8,7 +8,7 @@ import produce from 'immer'
 
 class HomeScreen extends React.Component {
   processEvent = (eventKey, eventValue) => {
-    const { dispatch, events } = this.props
+    const { dispatch } = this.props
 
     if (eventValue.types.includes(types.CHECKLIST)) {
       const checks = eventValue.checks
@@ -28,7 +28,7 @@ class HomeScreen extends React.Component {
             <Switch
               value={checkValues.checked}
               onValueChange={() => onChange(eventKey, checkKey)}
-              style={{ marginBottom: 5 }}
+              style={{ marginTop: 5 }}
             />
             <Text style={{ paddingBottom: 5 }}> {checkValues.title}</Text>
           </View>
@@ -36,11 +36,51 @@ class HomeScreen extends React.Component {
       })
 
       return produce(eventValue, draft => {
-        draft.description = <View>{switches}</View>
+        draft.description = (
+          <View>
+            <Text>{eventValue.description}</Text>
+            {switches}
+          </View>
+        )
       })
-    } else {
-      return eventValue
     }
+
+    if (eventValue.types.includes(types.WITH_INSTRUCTIONS)) {
+      const checks = eventValue.checks
+      const switches = Object.entries(checks).map(values => {
+        const checkKey = values[0]
+        const checkValues = values[1]
+
+        const onChange = (eventKey, checkKey) => {
+          dispatch(toggleTask(eventKey, checkKey))
+        }
+
+        return (
+          <View
+            style={{ flexDirection: 'row', alignItems: 'center' }}
+            key={`${eventKey}-${checkKey}`}
+          >
+            <Switch
+              value={checkValues.checked}
+              onValueChange={() => onChange(eventKey, checkKey)}
+              style={{ marginTop: 5 }}
+            />
+            <Text style={{ paddingBottom: 5 }}> {checkValues.title}</Text>
+          </View>
+        )
+      })
+
+      return produce(eventValue, draft => {
+        draft.description = (
+          <View>
+            <Text>Löydät ohjeet klikkaamalla tästä</Text>
+            <Text>{eventValue.description}</Text>
+            {switches}
+          </View>
+        )
+      })
+    }
+    return eventValue
   }
 
   render() {

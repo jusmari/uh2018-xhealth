@@ -21,9 +21,9 @@ export default function reducer(
         title: 'Syö lääkkeet',
         time: '15:00',
         checks: {
-          1: { title: 'Tramadol', checked: false },
-          2: { title: 'Burana', checked: false },
-          3: { title: 'Astmalääke', checked: false }
+          1: { title: 'Lääke1', checked: false },
+          2: { title: 'Lääke2', checked: false },
+          3: { title: 'Lääke3', checked: false }
         }
       },
       4: {
@@ -32,10 +32,13 @@ export default function reducer(
         time: '19:00'
       },
       5: {
-        types: [types.WITH_INSTRUCTIONS, types.TOUCHABLE],
+        types: [types.WITH_INSTRUCTIONS, types.TOUCHABLE, types.CHECKLIST],
         title: 'Päivittäinen kuntoutus',
-        description: 'Löydät ohjeet kuntoutukseen klikkaamalla',
-        time: '24:00'
+        description: 'Löydät ohjeet painamalla tästä',
+        time: '24:00',
+        checks: {
+          1: { title: 'Kuntoutus tehty', checked: false }
+        }
       }
     },
     instructions: {
