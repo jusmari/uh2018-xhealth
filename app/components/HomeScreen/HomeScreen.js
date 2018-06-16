@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 
-import EventList from './HomeScreen'
+import EventList from './EventList'
 
 export default class HomeScreen extends React.Component {
   state = {}
@@ -22,8 +22,6 @@ export default class HomeScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text>Kekekekekekekekek</Text>
-
         <EventList events={events} />
       </View>
     )

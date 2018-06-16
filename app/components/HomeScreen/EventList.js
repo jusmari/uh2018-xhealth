@@ -1,16 +1,13 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
+import Timeline from 'react-native-timeline-listview'
 
 const EventList = ({ events }) => {
-  const eventList = events.map(event => <Text>{event.title}</Text>)
+  const EventsList = events.map(event => (
+    <Text key={`${event.title}-${event.date}`}>{event.title}</Text>
+  ))
 
-  return <View>{eventList}</View>
+  return EventsList
 }
 
 export default EventList
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-})
