@@ -51,8 +51,28 @@ function findMedicationEventsByPatientId(req, res) {
   })
 }
 
+function updateMedication(req, res) {
+  const consumed = req.body.consumed
+  const id = req.body.id
+  console.log(`stuff ${id} ${consumed}`)
+  MedicationEvent.findOne({
+    where: {
+      id: id,
+    },
+  }).then(medicationEvent => {
+    if (medicationEvent) {
+      medicationEvent.medicationTaken = consumed
+      medicationEvent.save()
+      res.send('med event done')
+    } else {
+      res.send('med event fucked')
+    }
+  })
+
+}
 module.exports = {
   findMedicationEventsByPatientId,
   findMedicationEventById,
   findAllMedicationEvents,
+  updateMedication,
 }
