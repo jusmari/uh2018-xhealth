@@ -1,16 +1,28 @@
 const express = require('express')
 const { findPatientById, findAllPatients } = require('../controller/patientcontroller.js')
-const { findMedicationEventsByPatientId, findAllMedicationEvents, findMedicationEventById } = require('../controller/medicationeventcontroller.js')
+const { findMedicationEventsByPatientId, findAllMedicationEvents, findMedicationEventById, updateMedication } = require('../controller/medicationeventcontroller.js')
 const { findMeasurementEventsByPatientId, findAllMeasurementEvents, findMeasurementEventById } = require('../controller/measurementeventcontroller.js')
 const { findFhirMedication } = require('../controller/fhircontroller.js')
 
-var api = express()
+const api = express()
 
-var infos = function(req, res) {
-  var json = {
+const infos = function(req, res) {
+  const json = {
     _links: {
-      users: {
-        href: 'http://localhost:3000/api/users',
+      patients: {
+        href: 'http://localhost:3000/api/patients',
+      },
+      condition: {
+        href: 'http://localhost:3000/api/patients/:patientId/conditions',
+      },
+      measurementevents: {
+        href: 'http://localhost:3000/api/patients/:patientId/measurementevents',
+      },
+      medicationevents: {
+        href: 'http://localhost:3000/api/patients/:patientId/medicationevents',
+      },
+      medications: {
+        href: 'http://localhost:3000/api/medications/:fhirId',
       },
     },
   }
@@ -25,10 +37,12 @@ api.get('/patients/:patientId/medicationevents/:medicationEventId', findMedicati
 
 api.get('/patients/:patientId/measurementevents', findMeasurementEventsByPatientId)
 api.get('/patients/:patientId/measurementevents/:measurementEventId', findMeasurementEventById)
+api.get('/measurementevents', findAllMeasurementEvents)
 
 api.get('/medications/:fhirId', findFhirMedication)
 api.get('/medicationevents', findAllMedicationEvents)
 api.get('/medicationevents/:patientId', findMedicationEventsByPatientId)
+api.post('/medicationevents', updateMedication)
 // api.delete('/users/:userId', deleteUser)
 
 module.exports = api
