@@ -8,7 +8,6 @@ import {
   Switch
 } from 'react-native'
 import PersonalView from '../PersonalView/PersonalView'
-import SegmentControl from 'react-native-segment-controller'
 import { connect } from 'react-redux'
 import EventList from './EventList'
 import { toggleTask } from '../../actions'
@@ -63,14 +62,6 @@ class HomeScreen extends React.Component {
         <View style={styles.personal}>
           <PersonalView />
         </View>
-        <SegmentControl
-          values={['Timeline', 'Measurements', 'Chat']}
-          badges={[0, 0, 0]}
-          selectedIndex={0}
-          height={30}
-          onTabPress={() => {}}
-          borderRadius={5}
-        />
         <View style={styles.container}>
           <EventList events={processedEvents} />
         </View>
@@ -93,7 +84,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   container: {
-    flex: 4,
+    flex: 5,
     flexDirection: 'column',
     backgroundColor: '#fff',
     padding: 20,
