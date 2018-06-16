@@ -1,0 +1,62 @@
+[
+  {
+    "measurementName": "Weight",
+    "measurementTaken": true,
+    "measureBy": "2018-06-16 23:22:21"
+  },
+  {
+    "measurementName": "Weight",
+    "measurementTaken": true,
+    "measureBy": "2018-06-17 23:22:21"
+  },
+  {
+    "measurementName": "Weight",
+    "measurementTaken": false,
+    "measureBy": "2018-06-18 23:22:21"
+  },
+  {
+    "measurementName": "Weight",
+    "measurementTaken": false,
+    "measureBy": "2018-06-19 23:22:21"
+  },
+  {
+    "measurementName": "Blood pressure",
+    "measurementTaken": true,
+    "measureBy": "2018-06-16 23:22:21"
+  },
+  {
+    "measurementName": "Blood pressure",
+    "measurementTaken": true,
+    "measureBy": "2018-06-17 23:22:21"
+  },
+  {
+    "measurementName": "Blood pressure",
+    "measurementTaken": false,
+    "measureBy": "2018-06-18 23:22:21"
+  },
+  {
+    "measurementName": "Blood pressure",
+    "measurementTaken": false,
+    "measureBy": "2018-06-19 23:22:21"
+  },
+  {
+    "measurementName": 7,
+    "measurementTaken": true,
+    "measureBy": "2018-06-16 23:22:21"
+  },
+  {
+    "measurementName": 7,
+    "measurementTaken": true,
+    "measureBy": "2018-06-17 23:22:21"
+  },
+  {
+    "measurementName": 7,
+    "measurementTaken": false,
+    "measureBy": "2018-06-18 23:22:21"
+  },
+  {
+    "measurementName": 7,
+    "measurementTaken": false,
+    "measureBy": "2018-06-19 23:22:21"
+  }
+]
