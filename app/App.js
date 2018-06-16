@@ -4,9 +4,7 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider, connect } from 'react-redux'
 import thunk from 'redux-thunk'
 import reducer from './reducers'
-
-import HomeScreen from './components/HomeScreen/HomeScreen'
-import Instructions from './components/Instructions'
+import Tabs from './router/router'
 
 const store = createStore(reducer, applyMiddleware(thunk))
 
@@ -14,13 +12,13 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <RootStack />
+        <Tabs />
       </Provider>
     )
   }
 }
-
-const RootStack = createStackNavigator(
+/*
+const RootStack = createBottomTabNavigator(
   {
     Home: HomeScreen,
     Instructions: Instructions
@@ -29,4 +27,4 @@ const RootStack = createStackNavigator(
     //initialRouteName: 'TestScreen'
     initialRouteName: 'Home'
   }
-)
+)*/

@@ -62,8 +62,9 @@ export default function reducer(
         'Toistot: 1-5 kertaa.'
       ]
     },
-    medicationEvents: [],
-    personalInfo: {}
+    medicationEvents: null,
+    personalInfo: null,
+    medications: null
   },
   action
 ) {
