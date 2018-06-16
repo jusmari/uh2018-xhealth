@@ -15,11 +15,12 @@ const Instructions = props => {
 
   return (
     <View style={styles.container}>
-      {[title, text]}{' '}
+      {[title, text]}
       <WebView
         javaScriptEnabled={true}
         domStorageEnabled={true}
         source={{ uri: 'https://www.youtube.com/embed/-x13R6r-RGY' }}
+        style={styles.video}
       />
     </View>
   )

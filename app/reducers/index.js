@@ -6,18 +6,18 @@ export default function reducer(
   state = {
     events: {
       1: {
-        type: types.REMINDER,
+        types: [types.REMINDER],
         title: 'Röntgen',
         time: '12:30',
         active: false
       },
       2: {
-        type: types.INPUT_DATA,
+        types: [types.INPUT_DATA],
         title: 'Mittaa verenpaine',
         time: '14:00'
       },
       3: {
-        type: types.CHECKLIST,
+        types: [types.CHECKLIST],
         title: 'Syö lääkkeet',
         time: '15:00',
         checks: {
@@ -27,16 +27,15 @@ export default function reducer(
         }
       },
       4: {
-        type: types.INPUT_DATA,
+        types: [types.INPUT_DATA],
         title: 'Mittaa verenpaine',
         time: '19:00'
       },
       5: {
-        type: types.WITH_INSTRUCTIONS,
+        types: [types.WITH_INSTRUCTIONS, types.TOUCHABLE],
         title: 'Päivittäinen kuntoutus',
         description: 'Löydät ohjeet kuntoutukseen klikkaamalla',
-        time: '24:00',
-        touchable: true
+        time: '24:00'
       }
     },
     instructions: {

@@ -1,9 +1,12 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native'
 import Timeline from 'react-native-timeline-listview'
+import { types } from '../../actions'
 
 const EventList = ({ events, navigation }) => {
   renderDetail = (rowData, sectionID, rowID) => {
+    const eventTypes = rowData.types
+
     const title = rowData.description ? (
       <View>
         <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
@@ -15,7 +18,7 @@ const EventList = ({ events, navigation }) => {
       <Text style={{ fontSize: 16, fontWeight: 'bold' }}>{rowData.title}</Text>
     )
 
-    if (rowData.touchable) {
+    if (eventTypes.includes(types.TOUCHABLE)) {
       return (
         <TouchableOpacity
           style={styles.container}

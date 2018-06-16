@@ -11,7 +11,7 @@ class HomeScreen extends React.Component {
   processEvent = (eventKey, eventValue) => {
     const { dispatch, events } = this.props
 
-    if (eventValue.type === types.CHECKLIST) {
+    if (eventValue.types.includes(types.CHECKLIST)) {
       const checks = eventValue.checks
       const switches = Object.entries(checks).map(values => {
         const checkKey = values[0]
