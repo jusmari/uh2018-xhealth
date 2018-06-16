@@ -1,12 +1,21 @@
 import React from 'react'
-import { StyleSheet, Text, View, SafeAreaView, Switch } from 'react-native'
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Switch,
+  Modal,
+  Button,
+  TextInput
+} from 'react-native'
 import PersonalView from '../PersonalView/PersonalView'
 import { connect } from 'react-redux'
 import EventList from './EventList'
-import { toggleTask, types } from '../../actions'
+import { toggleTask, types, toggleModal, changeInput } from '../../actions'
 import produce from 'immer'
 
-class HomeScreen extends React.Component {
+export class HomeScreen extends React.Component {
   processEvent = (eventKey, eventValue) => {
     const { dispatch } = this.props
 
@@ -80,6 +89,83 @@ class HomeScreen extends React.Component {
         )
       })
     }
+
+    if (eventValue.types.includes(types.INPUT_DATA)) {
+      return produce(eventValue, draft => {
+        const form = eventValue.asking.map(infoKey => (
+          <View>
+            <Text style={{ textAlign: 'center' }}>
+              {infoKey
+                .split('-')
+                .join(' ')
+                .toUpperCase()}
+            </Text>
+            <TextInput
+              keyboardType="number-pad"
+              onChangeText={value =>
+                dispatch(changeInput({ eventKey, infoKey }, value))
+              }
+              value={eventValue.infos[infoKey]}
+              key={infoKey}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+            />
+          </View>
+        ))
+
+        const gatheredInfos = eventValue.asking.map(info => (
+          <View>
+            <Text>
+              {info
+                .split('-')
+                .join(' ')
+                .toUpperCase()}
+            </Text>
+            <Text>{eventValue.infos[info]}</Text>
+          </View>
+        ))
+
+        draft.description = (
+          <View style={{ flex: 1 }}>
+            <Modal
+              animationType="slide"
+              transparent={false}
+              visible={eventValue.modalOpen}
+              onRequestClose={() => {
+                alert('Modal has been closed.')
+              }}
+            >
+              <View style={{ padding: 100 }}>
+                <View>
+                  <View>{form}</View>
+
+                  <Button
+                    onPress={() => {
+                      dispatch(toggleModal(eventKey))
+                    }}
+                    title="OK"
+                  />
+                </View>
+              </View>
+            </Modal>
+
+            {Object.keys(eventValue.infos).length > 0 && (
+              <View>
+                <Text>Mitattu:</Text>
+                {gatheredInfos}
+              </View>
+            )}
+
+            <Button
+              onPress={() => {
+                dispatch(toggleModal(eventKey))
+              }}
+              title="Täytä tiedot"
+            />
+          </View>
+        )
+      })
+    }
+
     return eventValue
   }
 
@@ -123,7 +209,7 @@ const styles = StyleSheet.create({
     flex: 5,
     flexDirection: 'column',
     backgroundColor: '#fff',
-    padding: 20,
-    paddingTop: 65
+    padding: 0,
+    paddingTop: 0
   }
 })

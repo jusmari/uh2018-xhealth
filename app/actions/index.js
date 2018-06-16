@@ -16,3 +16,22 @@ export const toggleTask = (eventKey, checkKey) => {
     })
   }
 }
+
+export const TOGGLE_MODAL = 'TOGGLE_MODAL'
+export const toggleModal = eventKey => {
+  return dispatch => {
+    dispatch({
+      type: TOGGLE_MODAL,
+      eventKey
+    })
+  }
+}
+
+export const CHANGE_INPUT = 'CHANGE_INPUT'
+export const changeInput = (target, value) => {
+  return {
+    type: CHANGE_INPUT,
+    target,
+    value
+  }
+}
