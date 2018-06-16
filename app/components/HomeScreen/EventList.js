@@ -1,25 +1,36 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native'
 import Timeline from 'react-native-timeline-listview'
 
-const EventList = ({ events }) => {
-  const renderDetail = (rowData, sectionID, rowID) => {
-    let title = <Text style={[styles.title]}>{rowData.title}</Text>
-    var desc = null
-    if (rowData.description && rowData.imageUrl)
-      desc = (
-        <View style={styles.descriptionContainer}>
-          <Image source={{ uri: rowData.imageUrl }} style={styles.image} />
-          <Text style={[styles.textDescription]}>{rowData.description}</Text>
-        </View>
-      )
-
-    return (
-      <View style={{ flex: 1 }}>
-        {title}
-        {desc}
+const EventList = ({ events, navigation }) => {
+  renderDetail = (rowData, sectionID, rowID) => {
+    const title = rowData.description ? (
+      <View>
+        <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
+          {rowData.title}
+        </Text>
+        <Text style={{ marginTop: 10 }}>{rowData.description}</Text>
       </View>
+    ) : (
+      <Text style={{ fontSize: 16, fontWeight: 'bold' }}>{rowData.title}</Text>
     )
+
+    if (rowData.touchable) {
+      return (
+        <TouchableOpacity
+          style={styles.container}
+          onPress={() => instructionsPress(navigation)}
+        >
+          <View>{title}</View>
+        </TouchableOpacity>
+      )
+    }
+
+    return <View style={styles.container}>{title}</View>
+  }
+
+  instructionsPress = navigation => {
+    navigation.navigate('Instructions', 'shoulder')
   }
 
   return (
@@ -41,7 +52,7 @@ const EventList = ({ events }) => {
         style: { paddingTop: 5 }
       }}
       innerCircle={'dot'}
-      renderEvent={renderDetail}
+      renderDetail={renderDetail}
     />
   )
 }
@@ -50,7 +61,10 @@ export default EventList
 
 const styles = StyleSheet.create({
   list: {
+    flex: 1
+  },
+  container: {
     flex: 1,
-    marginTop: 40
+    marginTop: -10
   }
 })

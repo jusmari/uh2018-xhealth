@@ -1,11 +1,6 @@
 import produce from 'immer'
 import { TOGGLE_TASK } from '../actions'
-
-const types = {
-  REMINDER: 0,
-  CHECKLIST: 1,
-  INPUT_DATA: 2
-}
+import { types } from '../actions'
 
 export default function reducer(
   state = {
@@ -35,7 +30,23 @@ export default function reducer(
         type: types.INPUT_DATA,
         title: 'Mittaa verenpaine',
         time: '19:00'
+      },
+      5: {
+        type: types.WITH_INSTRUCTIONS,
+        title: 'Päivittäinen kuntoutus',
+        description: 'Löydät ohjeet kuntoutukseen klikkaamalla',
+        time: '24:00',
+        touchable: true
       }
+    },
+    instructions: {
+      shoulder: [
+        'Olkapäiden kuntoutus',
+        'Seisten seinää vasten. Kädet roikkuvat rennosti vartalon vieressä. Pyri koskettamaan seinää',
+        'takaraivolla, olkapäillä, takapuolella ja kantapäillä. Tavoittele luonnollista, ryhdikästä asentoa.',
+        'Huomio: Älä työnnä rintaa liikaa eteen tai notkista alaselkää.',
+        'Toistot: 1-5 kertaa.'
+      ]
     }
   },
   action

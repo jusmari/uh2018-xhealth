@@ -1,24 +1,11 @@
 import React from 'react'
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  SafeAreaView,
-  Switch
-} from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, Switch } from 'react-native'
 import PersonalView from '../PersonalView/PersonalView'
 import SegmentControl from 'react-native-segment-controller'
 import { connect } from 'react-redux'
 import EventList from './EventList'
-import { toggleTask } from '../../actions'
+import { toggleTask, types } from '../../actions'
 import produce from 'immer'
-
-const types = {
-  REMINDER: 0,
-  CHECKLIST: 1,
-  INPUT_DATA: 2
-}
 
 class HomeScreen extends React.Component {
   processEvent = (eventKey, eventValue) => {
@@ -35,11 +22,17 @@ class HomeScreen extends React.Component {
         }
 
         return (
-          <Switch
-            value={checkValues.checked}
-            onValueChange={() => onChange(eventKey, checkKey)}
+          <View
+            style={{ flexDirection: 'row', alignItems: 'center' }}
             key={`${eventKey}-${checkKey}`}
-          />
+          >
+            <Switch
+              value={checkValues.checked}
+              onValueChange={() => onChange(eventKey, checkKey)}
+              style={{ marginBottom: 5 }}
+            />
+            <Text style={{ paddingBottom: 5 }}> {checkValues.title}</Text>
+          </View>
         )
       })
 
@@ -72,7 +65,10 @@ class HomeScreen extends React.Component {
           borderRadius={5}
         />
         <View style={styles.container}>
-          <EventList events={processedEvents} />
+          <EventList
+            events={processedEvents}
+            navigation={this.props.navigation}
+          />
         </View>
       </SafeAreaView>
     )

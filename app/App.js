@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 import reducer from './reducers'
 
 import HomeScreen from './components/HomeScreen/HomeScreen'
+import Instructions from './components/Instructions'
 
 const store = createStore(reducer, applyMiddleware(thunk))
 
@@ -21,9 +22,11 @@ export default class App extends React.Component {
 
 const RootStack = createStackNavigator(
   {
-    Home: HomeScreen
+    Home: HomeScreen,
+    Instructions: Instructions
   },
   {
+    //initialRouteName: 'TestScreen'
     initialRouteName: 'Home'
   }
 )
