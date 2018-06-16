@@ -29,6 +29,7 @@ class HomeScreen extends React.Component {
           <Switch
             value={checkValues.checked}
             onValueChange={() => onChange(eventKey, checkKey)}
+            key={`${eventKey}-${checkKey}`}
           />
         )
       })
