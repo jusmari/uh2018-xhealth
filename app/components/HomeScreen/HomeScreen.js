@@ -1,30 +1,16 @@
 import React from 'react'
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  SafeAreaView,
-  Switch
-} from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, Switch } from 'react-native'
 import PersonalView from '../PersonalView/PersonalView'
-import SegmentControl from 'react-native-segment-controller'
 import { connect } from 'react-redux'
 import EventList from './EventList'
-import { toggleTask } from '../../actions'
+import { toggleTask, types } from '../../actions'
 import produce from 'immer'
-
-const types = {
-  REMINDER: 0,
-  CHECKLIST: 1,
-  INPUT_DATA: 2
-}
 
 class HomeScreen extends React.Component {
   processEvent = (eventKey, eventValue) => {
-    const { dispatch, events } = this.props
+    const { dispatch } = this.props
 
-    if (eventValue.type === types.CHECKLIST) {
+    if (eventValue.types.includes(types.CHECKLIST)) {
       const checks = eventValue.checks
       const switches = Object.entries(checks).map(values => {
         const checkKey = values[0]
@@ -35,20 +21,66 @@ class HomeScreen extends React.Component {
         }
 
         return (
-          <Switch
-            value={checkValues.checked}
-            onValueChange={() => onChange(eventKey, checkKey)}
+          <View
+            style={{ flexDirection: 'row', alignItems: 'center' }}
             key={`${eventKey}-${checkKey}`}
-          />
+          >
+            <Switch
+              value={checkValues.checked}
+              onValueChange={() => onChange(eventKey, checkKey)}
+              style={{ marginTop: 5 }}
+            />
+            <Text style={{ paddingBottom: 5 }}> {checkValues.title}</Text>
+          </View>
         )
       })
 
       return produce(eventValue, draft => {
-        draft.description = <View>{switches}</View>
+        draft.description = (
+          <View>
+            <Text>{eventValue.description}</Text>
+            {switches}
+          </View>
+        )
       })
-    } else {
-      return eventValue
     }
+
+    if (eventValue.types.includes(types.WITH_INSTRUCTIONS)) {
+      const checks = eventValue.checks
+      const switches = Object.entries(checks).map(values => {
+        const checkKey = values[0]
+        const checkValues = values[1]
+
+        const onChange = (eventKey, checkKey) => {
+          dispatch(toggleTask(eventKey, checkKey))
+        }
+
+        return (
+          <View
+            style={{ flexDirection: 'row', alignItems: 'center' }}
+            key={`${eventKey}-${checkKey}`}
+          >
+            <Switch
+              value={checkValues.checked}
+              onValueChange={() => onChange(eventKey, checkKey)}
+              style={{ marginTop: 5 }}
+            />
+            <Text style={{ paddingBottom: 5 }}> {checkValues.title}</Text>
+          </View>
+        )
+      })
+
+      return produce(eventValue, draft => {
+        draft.description = (
+          <View>
+            <Text>Löydät ohjeet klikkaamalla tästä</Text>
+            <Text>{eventValue.description}</Text>
+            {switches}
+          </View>
+        )
+      })
+    }
+    return eventValue
   }
 
   render() {
@@ -63,16 +95,11 @@ class HomeScreen extends React.Component {
         <View style={styles.personal}>
           <PersonalView />
         </View>
-        <SegmentControl
-          values={['Timeline', 'Measurements', 'Chat']}
-          badges={[0, 0, 0]}
-          selectedIndex={0}
-          height={30}
-          onTabPress={() => {}}
-          borderRadius={5}
-        />
         <View style={styles.container}>
-          <EventList events={processedEvents} />
+          <EventList
+            events={processedEvents}
+            navigation={this.props.navigation}
+          />
         </View>
       </SafeAreaView>
     )
@@ -93,7 +120,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   container: {
-    flex: 4,
+    flex: 5,
     flexDirection: 'column',
     backgroundColor: '#fff',
     padding: 20,
