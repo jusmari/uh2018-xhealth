@@ -1,6 +1,8 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
-import Timeline from 'react-native-timeline-listview'
+//import Timeline from 'react-native-timeline-listview'
+import CustomTimeline from './CustomTimeline'
+
 
 const EventList = ({ events }) => {
   const renderDetail = (rowData, sectionID, rowID) => {
@@ -23,9 +25,11 @@ const EventList = ({ events }) => {
   }
 
   return (
-    <Timeline
+    <CustomTimeline
       data={events}
       circleSize={20}
+      scrollEventThrottle={16}
+      onScroll={console.log("test")}
       circleColor="rgb(45,156,219)"
       lineColor="rgb(45,156,219)"
       timeContainerStyle={{ minWidth: 52, marginTop: -5 }}
