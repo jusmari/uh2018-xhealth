@@ -1,0 +1,62 @@
+[
+  {
+    "fhirMedicationId": 9,
+    "medicationTaken": true,
+    "timeToConsume": "2018-06-16 23:22:21"
+  },
+  {
+    "fhirMedicationId": 9,
+    "medicationTaken": true,
+    "timeToConsume": "2018-06-17 23:22:21"
+  },
+  {
+    "fhirMedicationId": 9,
+    "medicationTaken": false,
+    "timeToConsume": "2018-06-18 23:22:21"
+  },
+  {
+    "fhirMedicationId": 9,
+    "medicationTaken": false,
+    "timeToConsume": "2018-06-19 23:22:21"
+  },
+  {
+    "fhirMedicationId": 8,
+    "medicationTaken": true,
+    "timeToConsume": "2018-06-16 23:22:21"
+  },
+  {
+    "fhirMedicationId": 8,
+    "medicationTaken": true,
+    "timeToConsume": "2018-06-17 23:22:21"
+  },
+  {
+    "fhirMedicationId": 8,
+    "medicationTaken": false,
+    "timeToConsume": "2018-06-18 23:22:21"
+  },
+  {
+    "fhirMedicationId": 8,
+    "medicationTaken": false,
+    "timeToConsume": "2018-06-19 23:22:21"
+  },
+  {
+    "fhirMedicationId": 7,
+    "medicationTaken": true,
+    "timeToConsume": "2018-06-16 23:22:21"
+  },
+  {
+    "fhirMedicationId": 7,
+    "medicationTaken": true,
+    "timeToConsume": "2018-06-17 23:22:21"
+  },
+  {
+    "fhirMedicationId": 7,
+    "medicationTaken": false,
+    "timeToConsume": "2018-06-18 23:22:21"
+  },
+  {
+    "fhirMedicationId": 7,
+    "medicationTaken": false,
+    "timeToConsume": "2018-06-19 23:22:21"
+  }
+]
