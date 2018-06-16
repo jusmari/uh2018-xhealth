@@ -1,5 +1,10 @@
 import produce from 'immer'
-import { TOGGLE_TASK, TOGGLE_MODAL, CHANGE_INPUT } from '../actions'
+import {
+  TOGGLE_TASK,
+  TOGGLE_MODAL,
+  CHANGE_INPUT,
+  SET_API_DATA
+} from '../actions'
 import { types } from '../actions'
 
 export default function reducer(
@@ -8,14 +13,14 @@ export default function reducer(
       1: {
         types: [types.REMINDER],
         title: 'Röntgen',
-        time: '12:30',
+        time: 'pe 12:30',
         active: false,
         description: 'Oulun sairaalassa, PriiPrään katu 3C. Huone 221.'
       },
       2: {
         types: [types.INPUT_DATA],
         title: 'Mittaa verenpaine',
-        time: '14:00',
+        time: '19:00',
         asking: ['veren-paine'],
         modalOpen: false,
         infos: {}
@@ -56,23 +61,34 @@ export default function reducer(
         'Huomio: Älä työnnä rintaa liikaa eteen tai notkista alaselkää.',
         'Toistot: 1-5 kertaa.'
       ]
-    }
+    },
+    medicationEvents: [],
+    personalInfo: {}
   },
   action
 ) {
   switch (action.type) {
-    case CHANGE_INPUT:
+    case SET_API_DATA: {
+      const { data, target } = action
+
+      return produce(state, draft => {
+        draft[target] = data
+      })
+    }
+    case CHANGE_INPUT: {
       const { target, value } = action
 
       return produce(state, draft => {
         draft.events[target.eventKey].infos[target.infoKey] = value
       })
-    case TOGGLE_MODAL:
+    }
+    case TOGGLE_MODAL: {
       return produce(state, draft => {
         draft.events[action.eventKey].modalOpen = !draft.events[action.eventKey]
           .modalOpen
       })
-    case TOGGLE_TASK:
+    }
+    case TOGGLE_TASK: {
       const { checkKey, eventKey } = action
 
       return produce(state, draft => {
@@ -80,6 +96,7 @@ export default function reducer(
           eventKey
         ].checks[checkKey].checked
       })
+    }
     default:
       return state
   }

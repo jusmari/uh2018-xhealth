@@ -12,10 +12,20 @@ import {
 import PersonalView from '../PersonalView/PersonalView'
 import { connect } from 'react-redux'
 import EventList from './EventList'
-import { toggleTask, types, toggleModal, changeInput } from '../../actions'
+import {
+  toggleTask,
+  types,
+  toggleModal,
+  fetchApiData,
+  changeInput
+} from '../../actions'
 import produce from 'immer'
 
 class HomeScreen extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(fetchApiData())
+  }
+
   processEvent = (eventKey, eventValue) => {
     const { dispatch } = this.props
 
@@ -72,9 +82,8 @@ class HomeScreen extends React.Component {
             <Switch
               value={checkValues.checked}
               onValueChange={() => onChange(eventKey, checkKey)}
-              style={{ marginTop: 5 }}
             />
-            <Text style={{ paddingBottom: 5 }}> {checkValues.title}</Text>
+            <Text> {checkValues.title}</Text>
           </View>
         )
       })
@@ -93,7 +102,7 @@ class HomeScreen extends React.Component {
     if (eventValue.types.includes(types.INPUT_DATA)) {
       return produce(eventValue, draft => {
         const form = eventValue.asking.map(infoKey => (
-          <View>
+          <View key={infoKey}>
             <Text style={{ textAlign: 'center' }}>
               {infoKey
                 .split('-')
@@ -101,7 +110,7 @@ class HomeScreen extends React.Component {
                 .toUpperCase()}
             </Text>
             <TextInput
-              keyboardType="number-pad"
+              keyboardType="numeric"
               onChangeText={value =>
                 dispatch(changeInput({ eventKey, infoKey }, value))
               }
