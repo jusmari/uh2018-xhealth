@@ -1,5 +1,5 @@
 import produce from 'immer'
-import { TOGGLE_TASK } from '../actions'
+import { TOGGLE_TASK, TOGGLE_MODAL, CHANGE_INPUT } from '../actions'
 import { types } from '../actions'
 
 export default function reducer(
@@ -9,12 +9,16 @@ export default function reducer(
         types: [types.REMINDER],
         title: 'Röntgen',
         time: '12:30',
-        active: false
+        active: false,
+        description: 'Oulun sairaalassa, PriiPrään katu 3C. Huone 221.'
       },
       2: {
         types: [types.INPUT_DATA],
         title: 'Mittaa verenpaine',
-        time: '14:00'
+        time: '14:00',
+        asking: ['veren-paine'],
+        modalOpen: false,
+        infos: {}
       },
       3: {
         types: [types.CHECKLIST],
@@ -29,7 +33,10 @@ export default function reducer(
       4: {
         types: [types.INPUT_DATA],
         title: 'Mittaa verenpaine',
-        time: '19:00'
+        asking: ['veren-paine'],
+        modalOpen: false,
+        time: '19:00',
+        infos: {}
       },
       5: {
         types: [types.WITH_INSTRUCTIONS, types.TOUCHABLE, types.CHECKLIST],
@@ -54,12 +61,24 @@ export default function reducer(
   action
 ) {
   switch (action.type) {
+    case CHANGE_INPUT:
+      const { target, value } = action
+
+      return produce(state, draft => {
+        draft.events[target.eventKey].infos[target.infoKey] = value
+      })
+    case TOGGLE_MODAL:
+      return produce(state, draft => {
+        draft.events[action.eventKey].modalOpen = !draft.events[action.eventKey]
+          .modalOpen
+      })
     case TOGGLE_TASK:
       const { checkKey, eventKey } = action
 
       return produce(state, draft => {
-        let check = draft.events[eventKey].checks[checkKey].checked
-        draft.events[eventKey].checks[checkKey].checked = !check
+        draft.events[eventKey].checks[checkKey].checked = !draft.events[
+          eventKey
+        ].checks[checkKey].checked
       })
     default:
       return state
