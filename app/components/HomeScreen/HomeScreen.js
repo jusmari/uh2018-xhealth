@@ -6,7 +6,7 @@ import EventList from './EventList'
 import { toggleTask, types } from '../../actions'
 import produce from 'immer'
 
-class HomeScreen extends React.Component {
+export class HomeScreen extends React.Component {
   processEvent = (eventKey, eventValue) => {
     const { dispatch } = this.props
 
@@ -124,6 +124,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#fff',
     padding: 20,
-    paddingTop: 65
+    paddingTop: 0
   }
 })
