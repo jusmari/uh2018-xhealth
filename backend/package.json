@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon",
+    "start": "nodemon --exec node ./src/index.js --watch ./src",
     "lint": "eslint ./src",
     "nodemon": "nodemon --exec node ./src/index.js --watch ./src"
   },
