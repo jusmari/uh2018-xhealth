@@ -51,8 +51,28 @@ function findMeasurementEventsByPatientId(req, res) {
   })
 }
 
+function updateMeasurement(req, res) {
+  const { consumed, id, value } = req.body
+  console.log(`stuff ${id} ${consumed}`)
+  MeasurementEvent.findOne({
+    where: {
+      id: id,
+    },
+  }).then(measurementEvent => {
+    if (measurementEvent) {
+      measurementEvent.measurementTaken = consumed
+      measurementEvent.value = value
+      measurementEvent.save()
+      res.send('meas event done')
+    } else {
+      res.send('meas event fucked')
+    }
+  })
+}
+
 module.exports = {
   findMeasurementEventsByPatientId,
   findMeasurementEventById,
   findAllMeasurementEvents,
+  updateMeasurement,
 }

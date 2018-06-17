@@ -1,8 +1,8 @@
 const express = require('express')
 const { findPatientById, findAllPatients } = require('../controller/patientcontroller.js')
 const { findMedicationEventsByPatientId, findAllMedicationEvents, findMedicationEventById, updateMedication } = require('../controller/medicationeventcontroller.js')
-const { findMeasurementEventsByPatientId, findAllMeasurementEvents, findMeasurementEventById } = require('../controller/measurementeventcontroller.js')
-const { findFhirMedication } = require('../controller/fhircontroller.js')
+const { findMeasurementEventsByPatientId, findAllMeasurementEvents, findMeasurementEventById, updateMeasurement } = require('../controller/measurementeventcontroller.js')
+const { findFhirMedication, findFhirPatient, getWeightMeasurementsFromFhir, addFhirMeasurement } = require('../controller/fhircontroller.js')
 
 const api = express()
 
@@ -32,8 +32,11 @@ api.get('/', infos)
 
 api.get('/patients', findAllPatients)
 api.get('/patients/:patientId', findPatientById)
+api.get('/patients/:patientId/fhir', findFhirPatient)
 api.get('/patients/:patientId/medicationevents', findMedicationEventsByPatientId)
 api.get('/patients/:patientId/medicationevents/:medicationEventId', findMedicationEventById)
+api.get('/patients/:patientId/fhirmeasurement', getWeightMeasurementsFromFhir)
+api.post('/fhirmeasurement', addFhirMeasurement)
 
 api.get('/patients/:patientId/measurementevents', findMeasurementEventsByPatientId)
 api.get('/patients/:patientId/measurementevents/:measurementEventId', findMeasurementEventById)
@@ -43,6 +46,7 @@ api.get('/medications/:fhirId', findFhirMedication)
 api.get('/medicationevents', findAllMedicationEvents)
 api.get('/medicationevents/:patientId', findMedicationEventsByPatientId)
 api.post('/medicationevents', updateMedication)
+api.post('/measurementevents', updateMeasurement)
 // api.delete('/users/:userId', deleteUser)
 
 module.exports = api
