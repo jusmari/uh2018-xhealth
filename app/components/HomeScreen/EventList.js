@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native'
+
 import CustomTimeline from './CustomTimeline'
 import { types } from '../../actions'
 
