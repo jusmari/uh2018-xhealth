@@ -2,61 +2,72 @@
   {
     "measurementName": "Weight",
     "measurementTaken": true,
+    "value": 110,
     "measureBy": "2018-06-16 23:22:21"
   },
   {
     "measurementName": "Weight",
     "measurementTaken": true,
+    "value": 120,
     "measureBy": "2018-06-17 23:22:21"
   },
   {
     "measurementName": "Weight",
     "measurementTaken": false,
+    "value": 0,
     "measureBy": "2018-06-18 23:22:21"
   },
   {
     "measurementName": "Weight",
     "measurementTaken": false,
+    "value": 110,
     "measureBy": "2018-06-19 23:22:21"
   },
   {
     "measurementName": "Blood pressure",
-    "measurementTaken": true,
+    "value": 111,
     "measureBy": "2018-06-16 23:22:21"
-  },
+},
   {
     "measurementName": "Blood pressure",
     "measurementTaken": true,
+    "value": 113,
     "measureBy": "2018-06-17 23:22:21"
   },
   {
     "measurementName": "Blood pressure",
     "measurementTaken": false,
+    "value": 110,
     "measureBy": "2018-06-18 23:22:21"
   },
   {
     "measurementName": "Blood pressure",
     "measurementTaken": false,
+    "value": 110,
     "measureBy": "2018-06-19 23:22:21"
   },
   {
-    "measurementName": 7,
+    "measurementName": "Height",
     "measurementTaken": true,
+    "value": 110,
     "measureBy": "2018-06-16 23:22:21"
   },
   {
-    "measurementName": 7,
+    "measurementName": "Height",
     "measurementTaken": true,
+    "value": 115,
     "measureBy": "2018-06-17 23:22:21"
   },
   {
-    "measurementName": 7,
+    "measurementName": "Height",
     "measurementTaken": false,
+    "value": 0,
     "measureBy": "2018-06-18 23:22:21"
   },
   {
-    "measurementName": 7,
+    "measurementName": "Height",
     "measurementTaken": false,
+    "value": 0,
     "measureBy": "2018-06-19 23:22:21"
   }
 ]
