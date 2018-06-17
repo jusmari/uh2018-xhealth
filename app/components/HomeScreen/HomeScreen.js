@@ -184,7 +184,9 @@ class HomeScreen extends React.Component {
   }
 
   render() {
-    const events = this.props.events
+    const events = Object.entries(this.props.events).map(e =>
+      this.processEvent(e[0], e[1])
+    )
 
     return (
       <SafeAreaView style={styles.safearea}>
@@ -194,7 +196,8 @@ class HomeScreen extends React.Component {
         <View style={styles.container}>
           {this.props.measurementEvents && (
             <EventList
-              events={this.processedEvents(this.props.measurementEvents)}
+              //events={this.processedEvents(this.props.measurementEvents)}
+              events={events}
               navigation={this.props.navigation}
             />
           )}
@@ -205,7 +208,6 @@ class HomeScreen extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state', state)
   return {
     events: state.events,
     measurementEvents: state.measurementEvents

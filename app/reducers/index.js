@@ -13,14 +13,14 @@ export default function reducer(
       1: {
         types: [types.REMINDER],
         title: 'Röntgen',
-        time: '12:30',
+        time: 'to 12:30',
         active: false,
         description: 'Oulun sairaalassa, PriiPrään katu 3C. Huone 221.'
       },
       2: {
         types: [types.INPUT_DATA],
         title: 'Mittaa verenpaine',
-        time: '19:00',
+        time: 'ke 19:00',
         asking: ['veren-paine'],
         modalOpen: false,
         infos: {}
@@ -28,11 +28,14 @@ export default function reducer(
       3: {
         types: [types.CHECKLIST],
         title: 'Syö lääkkeet',
-        time: '15:00',
+        time: 'to 15:00',
         checks: {
-          1: { title: 'Lääke1', checked: false },
-          2: { title: 'Lääke2', checked: false },
-          3: { title: 'Lääke3', checked: false }
+          1: {
+            title: 'Ibuprofen 200 MG Oral Tablet',
+            checked: false
+          },
+          2: { title: 'Penicillin V Potassium 500 MG', checked: false },
+          3: { title: 'Acetaminophen 160 MG', checked: false }
         }
       },
       4: {
@@ -40,14 +43,14 @@ export default function reducer(
         title: 'Mittaa verenpaine',
         asking: ['veren-paine'],
         modalOpen: false,
-        time: '19:00',
+        time: 'pe 19:00',
         infos: {}
       },
       5: {
         types: [types.WITH_INSTRUCTIONS, types.TOUCHABLE, types.CHECKLIST],
         title: 'Päivittäinen kuntoutus',
         description: 'Löydät ohjeet painamalla tästä',
-        time: '24:00',
+        time: 'la 24:00',
         checks: {
           1: { title: 'Kuntoutus tehty', checked: false }
         }
@@ -61,11 +64,7 @@ export default function reducer(
         'Huomio: Älä työnnä rintaa liikaa eteen tai notkista alaselkää.',
         'Toistot: 1-5 kertaa.'
       ]
-    },
-    medicationEvents: null,
-    personalInfo: null,
-    medications: null,
-    measurementEvents: null
+    }
   },
   action
 ) {
