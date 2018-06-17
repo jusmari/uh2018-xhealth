@@ -13,7 +13,7 @@ export default function reducer(
       1: {
         types: [types.REMINDER],
         title: 'Röntgen',
-        time: 'pe 12:30',
+        time: '12:30',
         active: false,
         description: 'Oulun sairaalassa, PriiPrään katu 3C. Huone 221.'
       },
@@ -64,7 +64,8 @@ export default function reducer(
     },
     medicationEvents: null,
     personalInfo: null,
-    medications: null
+    medications: null,
+    measurementEvents: null
   },
   action
 ) {

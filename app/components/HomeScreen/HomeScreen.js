@@ -110,7 +110,6 @@ class HomeScreen extends React.Component {
                 .toUpperCase()}
             </Text>
             <TextInput
-              keyboardType="numeric"
               onChangeText={value =>
                 dispatch(changeInput({ eventKey, infoKey }, value))
               }
@@ -159,7 +158,7 @@ class HomeScreen extends React.Component {
 
             {Object.keys(eventValue.infos).length > 0 && (
               <View>
-                <Text>Mitattu:</Text>
+                <Text>Measured:</Text>
                 {gatheredInfos}
               </View>
             )}
@@ -178,12 +177,14 @@ class HomeScreen extends React.Component {
     return eventValue
   }
 
-  render() {
-    const events = this.props.events
-
-    const processedEvents = Object.entries(events).map(values =>
+  processedEvents = measurementEvents => {
+    return Object.entries(measurementEvents).map(values =>
       this.processEvent(values[0], values[1])
     )
+  }
+
+  render() {
+    const events = this.props.events
 
     return (
       <SafeAreaView style={styles.safearea}>
@@ -191,19 +192,25 @@ class HomeScreen extends React.Component {
           <PersonalView />
         </View>
         <View style={styles.container}>
-          <EventList
-            events={processedEvents}
-            navigation={this.props.navigation}
-          />
+          {this.props.measurementEvents && (
+            <EventList
+              events={this.processedEvents(this.props.measurementEvents)}
+              navigation={this.props.navigation}
+            />
+          )}
         </View>
       </SafeAreaView>
     )
   }
 }
 
-const mapStateToProps = state => ({
-  events: state.events
-})
+const mapStateToProps = state => {
+  console.log('state', state)
+  return {
+    events: state.events,
+    measurementEvents: state.measurementEvents
+  }
+}
 
 export default connect(mapStateToProps)(HomeScreen)
 

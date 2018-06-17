@@ -1,4 +1,5 @@
 import axios from 'axios'
+import moment from 'moment'
 
 export const types = {
   REMINDER: 0,
@@ -78,11 +79,29 @@ export const fetchApiData = () => {
     })
 
     axios.get(`${BASE_URL}/patients/1/measurementevents`).then(({ data }) => {
+      const events = {}
+      data.forEach(e => (events[e.id] = processMeasurementEvent(e)))
+
       dispatch({
         type: SET_API_DATA,
-        data,
+        data: events,
         target: 'measurementEvents'
       })
     })
+  }
+}
+
+const processMeasurementEvent = event => {
+  moment.locale('fi')
+
+  return {
+    types: [types.INPUT_DATA],
+    title: `Measure ${event.measurementName}`,
+    time: `${moment(event['measureBy'])
+      .format('LLLL')
+      .slice(0, 2)} ${moment(event['measureBy']).format('HH:MM')}`,
+    asking: [event.measurementName],
+    infos: event.value ? { [event.measurementName]: event.value } : {},
+    modalOpen: false
   }
 }
