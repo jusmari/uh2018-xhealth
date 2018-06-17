@@ -12,7 +12,7 @@ class PersonalView extends React.Component {
         />
         <View style={styles.textContainer}>
           <Text style={styles.name}>Perttu Lähteenmäki</Text>
-          <Text style={styles.data}>Lorem ipsum</Text>
+          <Text style={styles.data}>Seuraavaksi vuorossa: Mittaa verenpaine</Text>
         </View>
       </View>
     )
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   data: {
     fontSize: 12,
-    color: '#999999'
+    color: '#007FFA'
   }
 })
 

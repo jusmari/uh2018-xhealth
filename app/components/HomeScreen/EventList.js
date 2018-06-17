@@ -9,7 +9,7 @@ const EventList = ({ events, navigation }) => {
     const eventTypes = rowData.types
 
     const title = rowData.description ? (
-      <View>
+      <View style={styles.description}>
         <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
           {rowData.title}
         </Text>
@@ -43,17 +43,17 @@ const EventList = ({ events, navigation }) => {
       circleSize={20}
       scrollEventThrottle={16}
       onScrollBeginDrag={() => console.log('test')}
-      circleColor="rgb(45,156,219)"
-      lineColor="rgb(45,156,219)"
-      timeContainerStyle={{ minWidth: 72 }}
+      circleColor="rgb(189,220,253)"
+      lineColor="rgb(189,220,253)"
+      timeContainerStyle={{ minWidth: 72,    backgroundColor: '#F7F7F7'    }}
       timeStyle={{
         textAlign: 'center',
-        backgroundColor: '#ff9797',
-        color: 'white',
         padding: 5,
-        borderRadius: 13
+        borderRadius: 13,
+        backgroundColor: '#F7F7F7'
+
       }}
-      descriptionStyle={{ color: 'gray' }}
+      descriptionStyle={{ color: 'gray',     backgroundColor: '#F7F7F7'    }}
       innerCircle={'dot'}
       renderDetail={renderDetail}
     />
@@ -64,11 +64,20 @@ export default EventList
 
 const styles = StyleSheet.create({
   list: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#F7F7F7'
   },
   container: {
     flex: 1,
     paddingBottom: 10,
-    marginTop: -10
-  }
+    marginTop: -10,
+    backgroundColor: '#F7F7F7'
+
+  },
+  description: {
+    backgroundColor: "#fff",
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginBottom: 20
+  } 
 })
