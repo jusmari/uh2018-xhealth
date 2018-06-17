@@ -194,13 +194,11 @@ class HomeScreen extends React.Component {
           <PersonalView />
         </View>
         <View style={styles.container}>
-          {this.props.measurementEvents && (
-            <EventList
-              //events={this.processedEvents(this.props.measurementEvents)}
-              events={events}
-              navigation={this.props.navigation}
-            />
-          )}
+          <EventList
+            //events={this.processedEvents(this.props.measurementEvents)}
+            events={events}
+            navigation={this.props.navigation}
+          />
         </View>
       </SafeAreaView>
     )

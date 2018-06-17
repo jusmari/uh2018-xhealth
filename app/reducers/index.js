@@ -17,6 +17,15 @@ export default function reducer(
         active: false,
         description: 'Oulun sairaalassa, PriiPrään katu 3C. Huone 221.'
       },
+      0: {
+        types: [types.WITH_INSTRUCTIONS, types.TOUCHABLE, types.CHECKLIST],
+        title: 'Kuntoutus',
+        description: 'Löydät ohjeet painamalla tästä',
+        time: 'la 24:00',
+        checks: {
+          1: { title: 'Kuntoutus tehty', checked: false }
+        }
+      },
       2: {
         types: [types.INPUT_DATA],
         title: 'Mittaa verenpaine',
@@ -48,11 +57,24 @@ export default function reducer(
       },
       5: {
         types: [types.WITH_INSTRUCTIONS, types.TOUCHABLE, types.CHECKLIST],
-        title: 'Päivittäinen kuntoutus',
+        title: 'Kuntoutus',
         description: 'Löydät ohjeet painamalla tästä',
         time: 'la 24:00',
         checks: {
           1: { title: 'Kuntoutus tehty', checked: false }
+        }
+      },
+      6: {
+        types: [types.CHECKLIST],
+        title: 'Syö lääkkeet',
+        time: 'to 15:00',
+        checks: {
+          1: {
+            title: 'Ibuprofen 200 MG Oral Tablet',
+            checked: false
+          },
+          2: { title: 'Penicillin V Potassium 500 MG', checked: false },
+          3: { title: 'Acetaminophen 160 MG', checked: false }
         }
       }
     },
