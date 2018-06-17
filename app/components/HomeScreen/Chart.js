@@ -7,6 +7,7 @@ class Chart extends React.PureComponent {
     var data = []
 
     const data1 = [71, 75, 75, 78, 75, 74, 73, 76, 70, 78, 75, 70, 71, 74, 83]
+    const data3 = [105, 110, 108, 115, 112, 120, 110, 111, 107, 104, 107, 108]
 
     const data2 = [
       87.9,
@@ -27,8 +28,10 @@ class Chart extends React.PureComponent {
     ]
     if (this.props.type === '1') {
       data = data1
-    } else {
+    } else if (this.props.type === '2') {
       data = data2
+    } else {
+      data = data3
     }
     return (
       <View style={{ height: 150, flexDirection: 'row' }}>

@@ -9,7 +9,7 @@ export default class Measurements extends React.Component {
       <SafeAreaView style={styles.safearea}>
         <View>
           <Text style={styles.header}>Blood pressure</Text>
-          <Areachart />
+          <Chart type="3" />
           <Text style={styles.header}>Pulse</Text>
           <Chart type="1" />
           <Text style={styles.header}>Body weight</Text>
