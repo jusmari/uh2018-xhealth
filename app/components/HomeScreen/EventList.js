@@ -51,7 +51,6 @@ const EventList = ({ events, navigation }) => {
         padding: 5,
         borderRadius: 13,
         backgroundColor: '#F7F7F7'
-
       }}
       descriptionStyle={{ color: 'gray',     backgroundColor: '#F7F7F7'    }}
       innerCircle={'dot'}

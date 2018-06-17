@@ -76,6 +76,14 @@ export default function reducer(
           2: { title: 'Penicillin V Potassium 500 MG', checked: false },
           3: { title: 'Acetaminophen 160 MG', checked: false }
         }
+      },
+      7: {
+        types: [types.INPUT_DATA],
+        title: 'Mittaa paino',
+        time: 'ke 19:00',
+        asking: ['paino'],
+        modalOpen: false,
+        infos: {}
       }
     },
     instructions: {

@@ -113,7 +113,11 @@ class HomeScreen extends React.Component {
               onChangeText={value =>
                 dispatch(changeInput({ eventKey, infoKey }, value))
               }
-              value={String(eventValue.infos[infoKey])}
+              value={
+                eventValue.infos[infoKey]
+                  ? String(eventValue.infos[infoKey])
+                  : eventValue.infos[infoKey]
+              }
               key={infoKey}
               style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
             />
@@ -226,6 +230,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#fff',
     padding: 0,
-    paddingTop: 0
+    paddingTop: 65
   }
 })
