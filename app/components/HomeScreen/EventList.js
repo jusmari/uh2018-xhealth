@@ -44,12 +44,13 @@ const EventList = ({ events, navigation }) => {
       onScrollBeginDrag={() => console.log('test')}
       circleColor="rgb(45,156,219)"
       lineColor="rgb(45,156,219)"
-      timeContainerStyle={{ minWidth: 72 }}
+      timeContainerStyle={{ minWidth: 80 }}
       timeStyle={{
         textAlign: 'center',
-        backgroundColor: '#ff9797',
+        backgroundColor: 'green',
         color: 'white',
         padding: 5,
+        marginLeft: 5,
         borderRadius: 13
       }}
       descriptionStyle={{ color: 'gray' }}
