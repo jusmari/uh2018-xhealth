@@ -228,8 +228,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 5,
     flexDirection: 'column',
-    backgroundColor: '#fff',
+    backgroundColor: '#F7F7F7',
     padding: 0,
-    paddingTop: 65
+
   }
 })

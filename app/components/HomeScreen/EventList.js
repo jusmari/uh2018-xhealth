@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingBottom: 10,
+    padding: 10,
     marginTop: -10,
     backgroundColor: '#F7F7F7'
 
@@ -77,6 +77,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingTop: 10,
     paddingBottom: 10,
-    marginBottom: 20
+    marginBottom: 20,
+    paddingLeft: 10,
+    paddingRight: 5,
+    shadowColor: '#A9A9A9',
+    shadowOpacity: 0.5,
+    shadowOffset: {width: 0, height: 2},
+    shadowRadius: 2,
+    borderRadius: 3
   } 
 })
