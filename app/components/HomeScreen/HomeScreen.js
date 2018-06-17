@@ -12,10 +12,20 @@ import {
 import PersonalView from '../PersonalView/PersonalView'
 import { connect } from 'react-redux'
 import EventList from './EventList'
-import { toggleTask, types, toggleModal, changeInput } from '../../actions'
+import {
+  toggleTask,
+  types,
+  toggleModal,
+  fetchApiData,
+  changeInput
+} from '../../actions'
 import produce from 'immer'
 
 class HomeScreen extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(fetchApiData())
+  }
+
   processEvent = (eventKey, eventValue) => {
     const { dispatch } = this.props
 
@@ -72,9 +82,8 @@ class HomeScreen extends React.Component {
             <Switch
               value={checkValues.checked}
               onValueChange={() => onChange(eventKey, checkKey)}
-              style={{ marginTop: 5 }}
             />
-            <Text style={{ paddingBottom: 5 }}> {checkValues.title}</Text>
+            <Text> {checkValues.title}</Text>
           </View>
         )
       })
@@ -93,7 +102,7 @@ class HomeScreen extends React.Component {
     if (eventValue.types.includes(types.INPUT_DATA)) {
       return produce(eventValue, draft => {
         const form = eventValue.asking.map(infoKey => (
-          <View>
+          <View key={infoKey}>
             <Text style={{ textAlign: 'center' }}>
               {infoKey
                 .split('-')
@@ -101,11 +110,10 @@ class HomeScreen extends React.Component {
                 .toUpperCase()}
             </Text>
             <TextInput
-              keyboardType="number-pad"
               onChangeText={value =>
                 dispatch(changeInput({ eventKey, infoKey }, value))
               }
-              value={eventValue.infos[infoKey]}
+              value={String(eventValue.infos[infoKey])}
               key={infoKey}
               style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
             />
@@ -113,7 +121,7 @@ class HomeScreen extends React.Component {
         ))
 
         const gatheredInfos = eventValue.asking.map(info => (
-          <View>
+          <View key={info}>
             <Text>
               {info
                 .split('-')
@@ -150,7 +158,7 @@ class HomeScreen extends React.Component {
 
             {Object.keys(eventValue.infos).length > 0 && (
               <View>
-                <Text>Mitattu:</Text>
+                <Text>Measured:</Text>
                 {gatheredInfos}
               </View>
             )}
@@ -169,11 +177,15 @@ class HomeScreen extends React.Component {
     return eventValue
   }
 
-  render() {
-    const events = this.props.events
-
-    const processedEvents = Object.entries(events).map(values =>
+  processedEvents = measurementEvents => {
+    return Object.entries(measurementEvents).map(values =>
       this.processEvent(values[0], values[1])
+    )
+  }
+
+  render() {
+    const events = Object.entries(this.props.events).map(e =>
+      this.processEvent(e[0], e[1])
     )
 
     return (
@@ -183,7 +195,8 @@ class HomeScreen extends React.Component {
         </View>
         <View style={styles.container}>
           <EventList
-            events={processedEvents}
+            //events={this.processedEvents(this.props.measurementEvents)}
+            events={events}
             navigation={this.props.navigation}
           />
         </View>
@@ -192,9 +205,12 @@ class HomeScreen extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  events: state.events
-})
+const mapStateToProps = state => {
+  return {
+    events: state.events,
+    measurementEvents: state.measurementEvents
+  }
+}
 
 export default connect(mapStateToProps)(HomeScreen)
 
@@ -209,7 +225,7 @@ const styles = StyleSheet.create({
     flex: 5,
     flexDirection: 'column',
     backgroundColor: '#fff',
-    padding: 20,
-    paddingTop: 65
+    padding: 0,
+    paddingTop: 0
   }
 })

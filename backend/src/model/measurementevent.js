@@ -13,6 +13,9 @@ const MeasurementEvent = sequelize.define('measurement_event', {
   measureBy: {
     type: Sequelize.DATE,
   },
+  value: {
+    type: Sequelize.FLOAT,
+  },
 })
 
 module.exports = MeasurementEvent
