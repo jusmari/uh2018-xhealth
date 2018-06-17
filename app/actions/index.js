@@ -105,3 +105,5 @@ const processMeasurementEvent = event => {
     modalOpen: false
   }
 }
+
+const processMedicationEvents = event => {}

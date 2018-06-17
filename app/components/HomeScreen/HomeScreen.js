@@ -113,7 +113,7 @@ class HomeScreen extends React.Component {
               onChangeText={value =>
                 dispatch(changeInput({ eventKey, infoKey }, value))
               }
-              value={eventValue.infos[infoKey]}
+              value={String(eventValue.infos[infoKey])}
               key={infoKey}
               style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
             />
@@ -121,7 +121,7 @@ class HomeScreen extends React.Component {
         ))
 
         const gatheredInfos = eventValue.asking.map(info => (
-          <View>
+          <View key={info}>
             <Text>
               {info
                 .split('-')
